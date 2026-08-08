@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: rosco
+    runtime: node
+    plan: free
+    region: virginia
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: ROOM_SIGNING_SECRET
+        generateValue: true

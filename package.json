@@ -1,0 +1,53 @@
+{
+  "name": "rosco",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev:client": "vite --config client/vite.config.ts",
+    "dev:server": "tsx watch server/src/index.ts",
+    "build:client": "vite build --config client/vite.config.ts",
+    "build:server": "tsc -p server/tsconfig.json",
+    "build": "npm run build:client && npm run build:server",
+    "content:import": "tsx scripts/content/import-csv.ts",
+    "content:infantil": "tsx scripts/content/import-child-clues.ts",
+    "content:candidates": "tsx scripts/content/validate-candidates.ts",
+    "content:validate": "tsx scripts/content/validate.ts",
+    "content:report": "tsx scripts/content/report.ts",
+    "content:release-check": "tsx scripts/content/validate.ts --require-coverage",
+    "start": "node dist/server/src/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "check": "npm run typecheck && npm test",
+    "check:all": "npm run content:release-check && npm run check && npm run test:e2e && npm run build"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "socket.io-client": "^4.8.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "csv-parse": "^6.1.0",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "socket.io": "^4.8.1",
+    "zod": "^3.25.67"
+  }
+}

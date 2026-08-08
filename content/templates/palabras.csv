@@ -1,0 +1,3 @@
+id,answer,acceptedVariants,letter,relation,modes,categories,wordDifficulty,clueInfantil,clueFacil,clueIntermedio,clueAvanzado,sourceName,sourceUrl
+general-aventura,aventura,,A,empieza,general,general,1,"Algo emocionante que vivimos y luego podemos contar.","Actividad emocionante que implica cierto riesgo.","Experiencia fuera de lo común cuyo resultado es incierto.","Suceso que se distingue por lo extraordinario o arriesgado.",Fuente editorial,https://example.com/aventura
+general-laburo,laburo,laburar|trabajo,L,empieza,general,lunfardo|argentinismo,1,"En Argentina, manera informal de llamar al trabajo.","Voz rioplatense usada para referirse al trabajo.","Término coloquial derivado del italiano que alude al trabajo.",Fuente editorial,https://example.com/laburo
