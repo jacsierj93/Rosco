@@ -4,7 +4,10 @@ services:
     runtime: node
     plan: free
     region: virginia
-    buildCommand: npm ci && npm run build
+    # Vite y TypeScript son herramientas de compilacion (devDependencies).
+    # Render expone NODE_ENV=production durante el build, asi que las incluimos
+    # explicitamente y las quitamos una vez generados los artefactos.
+    buildCommand: npm ci --include=dev && npm run build && npm prune --omit=dev
     startCommand: npm start
     healthCheckPath: /health
     autoDeployTrigger: commit

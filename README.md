@@ -32,7 +32,7 @@ Abrir `http://localhost:3000/juego` en la pantalla principal. El QR generado con
 
 ## Desplegar en Render
 
-El archivo [`render.yaml`](render.yaml) define un único servicio web en el plan gratuito. Render compila el cliente y el servidor, genera `ROOM_SIGNING_SECRET` automáticamente y comprueba la ruta `/health` antes de publicar una versión.
+El archivo [`render.yaml`](render.yaml) define un único servicio web en el plan gratuito. Render instala temporalmente las herramientas de compilación, compila el cliente y el servidor, elimina las dependencias exclusivas de desarrollo, genera `ROOM_SIGNING_SECRET` automáticamente y comprueba la ruta `/health` antes de publicar una versión. Este flujo no ejecuta pruebas ni validaciones editoriales.
 
 1. Subir este repositorio a GitHub o GitLab.
 2. En el panel de Render, elegir **New > Blueprint**.
