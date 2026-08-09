@@ -10,6 +10,7 @@ El nivel infantil será un cuarto nivel editorial, separado de `fácil`. No se o
 - Priorizar la relación `empieza`; usar `contiene` solo cuando resulte natural.
 - Leer cada pista en voz alta y comprobar que no dependa de información omitida.
 - Etiquetar la edad orientativa y conservar una URL específica como fuente.
+- Marcar como `infantil-cotidiano` un núcleo de al menos ocho respuestas muy conocidas por letra. En una partida nueva, esas respuestas y sus distractores tienen prioridad sobre el vocabulario de reserva.
 
 ## Variante general
 
@@ -21,4 +22,4 @@ La fuente principal será [Lecciones que aprendo de la Biblia](https://www.jw.or
 
 ## Cobertura alcanzada
 
-Ambos modos superan el mismo control de publicación que los demás niveles: 28 candidatos compatibles para cada una de las 25 letras, suficientes para cuatro respuestas, cuatro distractores y seis partidas consecutivas sin repetir respuestas. `Niños` está habilitado en la configuración. Como siguiente control editorial se recomienda probar roscos completos con niños y usar el botón de marcado para ajustar vocabulario y longitud.
+Ambos modos superan el mismo control de publicación que los demás niveles: 28 candidatos compatibles para cada una de las 25 letras, suficientes para cuatro respuestas, cuatro distractores y seis partidas consecutivas sin repetir respuestas. En el modo general, cada letra conserva además un núcleo `infantil-cotidiano` de al menos ocho términos: cubre las cuatro respuestas y los cuatro distractores de una primera partida sin recurrir al vocabulario menos común. `Niños` está habilitado en la configuración. Como siguiente control editorial se recomienda probar roscos completos con niños y usar el botón de marcado para ajustar vocabulario y longitud.

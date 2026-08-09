@@ -57,6 +57,37 @@ describe("generateRoscos", () => {
     expect(result.selectedEntryIds).not.toContain(recentId);
   });
 
+  it("prioriza vocabulario cotidiano en el nivel infantil", () => {
+    const entries = entriesForLetter("A").map((entry, index) => ({
+      ...entry,
+      categories: index < 8 ? ["infantil", "infantil-cotidiano"] : ["infantil"],
+      clues: { ...entry.clues, infantil: `Pista infantil A ${index}` }
+    }));
+    const infantilConfig = {
+      ...config(4),
+      difficulty: "infantil" as const,
+      regionalWeight: 0
+    };
+
+    const result = generateRoscos({
+      config: infantilConfig,
+      entries,
+      history: {},
+      gameNumber: 1,
+      seed: "infantil-cotidiano",
+      letters: ["A"]
+    });
+
+    const preferredIds = new Set(entries.slice(0, 8).map((entry) => entry.id));
+    expect(result.selectedEntryIds.every((id) => preferredIds.has(id))).toBe(true);
+    for (const player of result.players) {
+      expect(player.questions[0]?.options.every((option) => {
+        const entryId = option.id.split(":").at(-1);
+        return entryId !== undefined && preferredIds.has(entryId);
+      })).toBe(true);
+    }
+  });
+
   it("reutiliza las menos recientes cuando todo el banco está en enfriamiento", () => {
     const entries = entriesForLetter("A", 6);
     const history = Object.fromEntries(entries.map((entry, index) => [

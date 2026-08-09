@@ -8,6 +8,7 @@ import type { GenerateRoscosInput, GeneratedRoscos, UsageHistory } from "./types
 interface RankedEntry {
   entry: ContentEntry;
   regional: boolean;
+  childFriendly: boolean;
   historyScore: number;
   randomScore: number;
 }
@@ -34,10 +35,17 @@ function rankCandidates(
   return entries
     .map((entry): RankedEntry => {
       const score = historyScore(entry.id, input.history, input.gameNumber, cooldownGames);
-      return { entry, regional: isRegional(entry), historyScore: score, randomScore: random() };
+      return {
+        entry,
+        regional: isRegional(entry),
+        childFriendly: input.config.difficulty === "infantil" && entry.categories.includes("infantil-cotidiano"),
+        historyScore: score,
+        randomScore: random()
+      };
     })
     .sort((left, right) => {
       if (left.historyScore !== right.historyScore) return right.historyScore - left.historyScore;
+      if (left.childFriendly !== right.childFriendly) return Number(right.childFriendly) - Number(left.childFriendly);
       return left.randomScore - right.randomScore;
     });
 }
@@ -117,7 +125,9 @@ export function generateRoscos(input: GenerateRoscosInput): GeneratedRoscos {
           candidate.entry.relation === answerEntry.relation &&
           !usedAnswers.has(candidate.entry.id)
       );
-      const distractors = shuffle(distractorPool, random).slice(0, distractorCount);
+      const distractors = input.config.difficulty === "infantil"
+        ? distractorPool.slice(0, distractorCount)
+        : shuffle(distractorPool, random).slice(0, distractorCount);
       if (distractors.length < distractorCount) {
         throw new GenerationError("INSUFFICIENT_DISTRACTORS", letter, {
           required: distractorCount,
